@@ -44,12 +44,17 @@ type CurrentWeatherData struct {
 }
 
 // NewCurrent returns a new CurrentWeatherData pointer with the supplied parameters
-func NewCurrent(unit, lang string, options ...Option) (*CurrentWeatherData, error) {
+func NewCurrent(unit, lang, apiKey string, options ...Option) (*CurrentWeatherData, error) {
+	if !ValidAPIKey(apiKey) {
+		return nil, errInvalidKey
+	}
+
 	unitChoice := strings.ToUpper(unit)
 	langChoice := strings.ToUpper(lang)
 
 	c := &CurrentWeatherData{
 		Settings: NewSettings(),
+		Key:      apiKey,
 	}
 
 	if ValidDataUnit(unitChoice) {
@@ -63,8 +68,6 @@ func NewCurrent(unit, lang string, options ...Option) (*CurrentWeatherData, erro
 	} else {
 		return nil, errLangUnavailable
 	}
-
-	c.Key = getKey()
 
 	if err := setOptions(c.Settings, options); err != nil {
 		return nil, err
