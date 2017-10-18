@@ -30,14 +30,15 @@ var errInvalidHttpClient = errors.New("invalid http client")
 // DataUnits represents the character chosen to represent the temperature notation
 var DataUnits = map[string]string{"C": "metric", "F": "imperial", "K": "internal"}
 var (
-	baseURL      = "http://api.openweathermap.org/data/2.5/weather?%s"
-	iconURL      = "http://openweathermap.org/img/w/%s"
-	stationURL   = "http://api.openweathermap.org/data/2.5/station?id=%d"
-	forecastBase = "http://api.openweathermap.org/data/2.5/forecast?appid=%s&%s&mode=json&units=%s&lang=%s&cnt=%d"
-	historyURL   = "http://api.openweathermap.org/data/2.5/history/%s"
-	pollutionURL = "http://api.openweathermap.org/pollution/v1/co/"
-	uvURL        = "http://api.openweathermap.org/data/2.5/"
-	dataPostURL  = "http://openweathermap.org/data/post"
+	baseURL       = "http://api.openweathermap.org/data/2.5/weather?%s"
+	iconURL       = "http://openweathermap.org/img/w/%s"
+	stationURL    = "http://api.openweathermap.org/data/2.5/station?id=%d"
+	forecastBase  = "http://api.openweathermap.org/data/2.5/forecast/daily?appid=%s&%s&mode=json&units=%s&lang=%s&cnt=%d"
+	forecast5Base = "http://api.openweathermap.org/data/2.5/forecast?appid=%s&%s&mode=json&units=%s&lang=%s&cnt=%d"
+	historyURL    = "http://api.openweathermap.org/data/2.5/history/%s"
+	pollutionURL  = "http://api.openweathermap.org/pollution/v1/co/"
+	uvURL         = "http://api.openweathermap.org/data/2.5/"
+	dataPostURL   = "http://openweathermap.org/data/post"
 )
 
 // LangCodes holds all supported languages to be used
