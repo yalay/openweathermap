@@ -24,24 +24,21 @@ import (
 
 // ForecastWeatherList holds specific query data
 type Forecast5WeatherList struct {
-	Dt      int         `json:"dt"`
-	Temp    Temperature `json:"temp"`
-	Main    Main        `json:"main"`
-	Weather []Weather   `json:"weather"`
-	Wind    Wind        `json:"wind"`
-	Speed   float64     `json:"speed"`
-	Deg     int         `json:"deg"`
-	Snow    float64     `json:"snow"`
-	Rain    float64     `json:"rain"`
+	Dt      int       `json:"dt"`
+	Main    Main      `json:"main"`
+	Weather []Weather `json:"weather"`
+	Wind    Wind      `json:"wind"`
+	Speed   float64   `json:"speed"`
+	Deg     int       `json:"deg"`
 }
 
 // ForecastWeatherData will hold returned data from queries
 type Forecast5WeatherData struct {
-	COD     string                `json:"cod"`
-	Message float64               `json:"message"`
-	City    City                  `json:"city"`
-	Cnt     int                   `json:"cnt"`
-	List    []ForecastWeatherList `json:"list"`
+	COD     string                 `json:"cod"`
+	Message float64                `json:"message"`
+	City    City                   `json:"city"`
+	Cnt     int                    `json:"cnt"`
+	List    []Forecast5WeatherList `json:"list"`
 	Unit    string
 	Lang    string
 	Key     string
@@ -50,7 +47,7 @@ type Forecast5WeatherData struct {
 
 // NewForecast returns a new HistoricalWeatherData pointer with
 // the supplied arguments.
-func NewForecast5(unit, lang, apiKey string, options ...Option) (*ForecastWeatherData, error) {
+func NewForecast5(unit, lang, apiKey string, options ...Option) (*Forecast5WeatherData, error) {
 	if !ValidAPIKey(apiKey) {
 		return nil, errInvalidKey
 	}
@@ -58,7 +55,7 @@ func NewForecast5(unit, lang, apiKey string, options ...Option) (*ForecastWeathe
 	unitChoice := strings.ToUpper(unit)
 	langChoice := strings.ToUpper(lang)
 
-	f := &ForecastWeatherData{
+	f := &Forecast5WeatherData{
 		Settings: NewSettings(),
 		Key:      apiKey,
 	}
